@@ -19,10 +19,10 @@ class ElementSpec:
             result = nested_lookup(
                 source["ds:{}".format(self.ds_num)], self.extraction_map
             )
-        except (IndexError, TypeError):
+        except (IndexError, TypeError, KeyError):
             result = None
 
-        if self.post_processor is not None:
+        if result is not None and self.post_processor is not None:
             result = self.post_processor(result)
 
         return result
@@ -30,6 +30,13 @@ class ElementSpec:
 
 def unescape_text(s):
     return unescape(s.replace('<br>', '\r\n'))
+
+def comment_itr(itr):
+    for elem in itr:
+        try:
+            yield elem[4]
+        except IndexError:
+            pass
 
 
 class ElementSpecs:
@@ -82,5 +89,5 @@ class ElementSpecs:
         "version": ElementSpec(8, [1]),
         "recentChanges": ElementSpec(5, [0, 12, 6, 1], unescape_text),
         "recentChangesHTML": ElementSpec(5, [0, 12, 6, 1]),
-        "comments": ElementSpec(15, [0], lambda container: [item[4] for item in container]),
+        "comments": ElementSpec(16, [0], lambda s: list(comment_itr(s))),
     }
