@@ -9,8 +9,6 @@ class TestApp(TestCase):
     def test_happypath(self):
         result = app("com.sgn.pandapop.gp")
 
-        print (result)
-
         self.assertEqual("com.sgn.pandapop.gp", result["appId"])
         self.assertEqual(
             "Panda Pop! Bubble Shooter Saga & Puzzle Adventure", result["title"]
