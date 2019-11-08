@@ -48,10 +48,11 @@ class ElementSpecs:
         "summaryHTML": ElementSpec(5, [0, 10, 1, 1]),
         "installs": ElementSpec(5, [0, 12, 9, 0]),
         "minInstalls": ElementSpec(5, [0, 12, 9, 0], lambda s: int(Regex.NOT_NUMBER.sub('', s)) if s else 0),
-        "score": ElementSpec(7, [0, 6, 0, 1]),
-        "ratings": ElementSpec(7, [0, 6, 2, 1]),
-        "reviews": ElementSpec(7, [0, 6, 3, 1]),
-        "histogram": ElementSpec(7, [0, 6, 1], lambda container: [
+        "score": ElementSpec(6, [0, 6, 0, 1]),
+        "scoreText": ElementSpec(6, [0, 6, 0, 0]),
+        "ratings": ElementSpec(6, [0, 6, 2, 1]),
+        "reviews": ElementSpec(6, [0, 6, 3, 1]),
+        "histogram": ElementSpec(6, [0, 6, 1], lambda container: [
             container[1][1],
             container[2][1],
             container[3][1],
@@ -62,6 +63,7 @@ class ElementSpecs:
         "free": ElementSpec(3, [0, 2, 0, 0, 0, 1, 0, 0], lambda s: s == 0),
         "currency": ElementSpec(3, [0, 2, 0, 0, 0, 1, 0, 1]),
         "offersIAP": ElementSpec(5, [0, 12, 12, 0], bool),
+        "IAPrange": ElementSpec(5, [0, 1, 12, 0]),
         "size": ElementSpec(8, [0]),
         "androidVersion": ElementSpec(8, [2], lambda s: s.split()[0]),
         "androidVersionText": ElementSpec(8, [2]),
