@@ -17,4 +17,5 @@ class TestApp(TestCase):
             "https://play.google.com/store/apps/details?id=com.sgn.pandapop.gp&hl=en&gl=us",
             result["url"],
         )
+
         validators.url(result["icon"])
